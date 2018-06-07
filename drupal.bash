@@ -48,4 +48,4 @@ _drush() {
 }
 
 alias drush=_drush
-alias drupal=_drush
+alias drupal=_drupal
