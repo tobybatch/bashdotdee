@@ -1,8 +1,8 @@
 ######################
 # Cottages
 
-export NTDR_HOME=/home/tobias/workspace/cottaging/ntdr-pas
-export COTTAGE_HOME=/home/tobias/workspace/cottaging/sites
+export NTDR_HOME=$HOME/workspace/cottaging/ntdr-pas
+export COTTAGE_HOME=$HOME/workspace/cottaging/sites
 
 function cottage-pull {
     if [ -z "$1" ]; then
