@@ -3,7 +3,8 @@
 Adds function to my bash shell.
 
     git checkout git@github.com:tobybatch/bashdotdee.git $HOME/.bash.d
-    cat <<EOF
+    
+    cat <<EOF>>.bashrc
     for x in ~/.bash.d/*.bash
     do
         . $x
