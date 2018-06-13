@@ -1,20 +1,20 @@
 # Include Drush bash customizations.
-if [ -f "/home/tobias/.drush/drush.bashrc" ] ; then
-  source /home/tobias/.drush/drush.bashrc
+if [ -f "$HOME/.drush/drush.bashrc" ] ; then
+  source $HOME/.drush/drush.bashrc
 fi
 
 
 # Include Drush completion.
 
-if [ -f "/home/tobias/.drush/drush.complete.sh" ] ; then
-  source /home/tobias/.drush/drush.complete.sh
+if [ -f "$HOME/.drush/drush.complete.sh" ] ; then
+  source $HOME/.drush/drush.complete.sh
 fi
 
 
 # Include Drush prompt customizations.
 
-if [ -f "/home/tobias/.drush/drush.prompt.sh" ] ; then
-  source /home/tobias/.drush/drush.prompt.sh
+if [ -f "$HOME/.drush/drush.prompt.sh" ] ; then
+  source $HOME/.drush/drush.prompt.sh
 fi
 
 search_up() {
