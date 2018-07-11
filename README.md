@@ -2,7 +2,7 @@
 
 Adds function to my bash shell.
 
-    git checkout git@github.com:tobybatch/bashdotdee.git $HOME/.bash.d
+    git clone git@github.com:tobybatch/bashdotdee.git $HOME/.bash.d
     
     cat <<EOF>>.bashrc
     for x in ~/.bash.d/*.bash
