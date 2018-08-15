@@ -7,7 +7,7 @@ Adds function to my bash shell.
     cat <<EOF>>.bashrc
     for x in ~/.bash.d/*.bash
     do
-        . $x
+        . "$x"
     done
     EOF
 
