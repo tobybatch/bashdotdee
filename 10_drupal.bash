@@ -49,3 +49,5 @@ _drush() {
 
 alias drush=_drush
 alias drupal=_drupal
+
+export DR_PORT=8989
