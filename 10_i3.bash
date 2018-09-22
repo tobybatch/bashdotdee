@@ -1,4 +1,4 @@
 function cd {
-        builtin cd $@
+        builtin cd "$@"
         pwd > ~/.last_dir
 }
