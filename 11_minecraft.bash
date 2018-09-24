@@ -26,6 +26,21 @@ minecraft() {
         echo "MC_UUID=$UUID" > $RCFILE
         echo "MC_ACCESS_TOKEN=$ACCESS_TOKEN" >> $RCFILE
         cat $RCFILE
+    elif [ "$1" = "--install" ]; then
+        if [ -z "$HOME_DIRS" ]; then
+            echo "You need to set the HOME_DIRS value."
+            echo "$ HOME_DIRS=/home"
+            return 1
+        fi
+        for x in $(ls $HOME_DIRS);
+        do
+            echo "rsync -a $HOME/.minecraft $HOME_DIRS/$x/"
+            sudo rsync -a $HOME/.minecraft $HOME_DIRS/$x/
+        done
+    elif [ "$1" = "--fixperms" ]; then
+        UID=$(id -u)
+        GID=$(id -g)
+        sudo chown -R $UID:$GID $HOME/.minecraft
     else
         # Run it
 
