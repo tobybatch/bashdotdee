@@ -19,10 +19,12 @@ minecraft() {
         echo " to $DST"
         cp -r $SRC $DST
 
+        ln -s $HOME/.minecraft/assets/indexes/1.12.json $HOME/.minecraft/assets/indexes/1.9.json
+
         # Now get the tokens
         FULL_PS_LINE=$(ps -ef |grep "userType mojang\|userType legacy"|grep "versionType release")
-        ACCESS_TOKEN=$(echo $FULL_PS_LINE | awk '{print $33}')
-        UUID=$(echo $FULL_PS_LINE | awk '{print $31}')
+        ACCESS_TOKEN=$(echo $FULL_PS_LINE | awk '{print $34}')
+        UUID=$(echo $FULL_PS_LINE | awk '{print $32}')
         echo "MC_UUID=$UUID" > $RCFILE
         echo "MC_ACCESS_TOKEN=$ACCESS_TOKEN" >> $RCFILE
         cat $RCFILE
