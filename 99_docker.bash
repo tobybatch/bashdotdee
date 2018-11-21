@@ -33,8 +33,13 @@ if [ ! -z "$(which docker)" ]; then
     function docker-clear-log {
 
         if [[ -z $1 ]]; then
-            echo "No container specified"
-            return 1
+            read -p "No container specified clear all,i Are you sure? " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]
+            then
+                sudo su - root -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"
+            fi
+            return 0
         fi
 
         if [[ "$(docker ps -aq -f name=^/${1}$ 2> /dev/null)" == "" ]]; then

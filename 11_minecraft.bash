@@ -22,7 +22,7 @@ minecraft() {
         ln -s $HOME/.minecraft/assets/indexes/1.12.json $HOME/.minecraft/assets/indexes/1.9.json
 
         # Now get the tokens
-        FULL_PS_LINE=$(ps -ef |grep "userType mojang\|userType legacy"|grep "versionType release")
+        FULL_PS_LINE=$(ps -ef |grep "userType mojang\|userType legacy"|head -n 1)
         ACCESS_TOKEN=$(echo $FULL_PS_LINE | awk '{print $34}')
         UUID=$(echo $FULL_PS_LINE | awk '{print $32}')
         echo "MC_UUID=$UUID" > $RCFILE
