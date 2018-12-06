@@ -33,7 +33,7 @@ if [ ! -z "$(which docker)" ]; then
     function docker-clear-log {
 
         if [[ -z $1 ]]; then
-            read -p "No container specified clear all,i Are you sure? " -n 1 -r
+            read -p "No container specified clear all, Are you sure? " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]
             then
