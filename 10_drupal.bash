@@ -47,8 +47,18 @@ _drush() {
     fi
 }
 
+_console() {
+    ROOT=`search_up bin`
+    if [ ! -z "$ROOT" ]; then
+        $ROOT/bin/console $@
+    else
+        exit 1
+    fi
+}
+
 alias drush=_drush
 alias drupal=_drupal
+alias console=_console
 
 export DR_PORT=8989
 export PATH=$PATH:$HOME/.config/composer/vendor/drush

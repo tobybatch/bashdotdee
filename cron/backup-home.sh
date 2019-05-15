@@ -26,4 +26,4 @@ done
 
 CMD="$CMD --size-only $HOME $TARGET"
 
-echo $CMD
+$CMD
