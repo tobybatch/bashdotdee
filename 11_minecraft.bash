@@ -1,5 +1,3 @@
-
-
 minecraft() {
     RCFILE=$HOME/.minecraftrc
     VERSION_DIR=$(ls -lrdt $HOME/.minecraft/versions/* | tail -n 1 | awk '{print $9}')
@@ -19,14 +17,39 @@ minecraft() {
         echo " to $DST"
         cp -r $SRC $DST
 
-        ln -s $HOME/.minecraft/assets/indexes/1.12.json $HOME/.minecraft/assets/indexes/1.9.json
+        cp -r $HOME/.minecraft/assets $HOME/.minecraft/_assets
 
         # Now get the tokens
-        FULL_PS_LINE=$(ps -ef |grep "userType mojang\|userType legacy"|head -n 1)
-        ACCESS_TOKEN=$(echo $FULL_PS_LINE | awk '{print $34}')
-        UUID=$(echo $FULL_PS_LINE | awk '{print $32}')
+        FULL_PS_LINE=$(ps -ef |grep "userType mojang\|userType legacy"|grep "gameDir")
+
+        for x in $FULL_PS_LINE; do
+          if [ "$x" == "--uuid" ]; then
+            UUIDNEXT=1
+          elif [ "$x" == "--accessToken" ]; then
+            ACCESSTOKENNEXT=1
+          elif [ "$x" == "--version" ]; then
+            VERSIONNEXT=1
+          elif [ "$x" == "--assetIndex" ]; then
+            ASSETINDEXNEXT=1
+          elif [ ! -z "$UUIDNEXT" ]; then
+            UUID=$x
+            unset UUIDNEXT
+          elif [ ! -z "$ACCESSTOKENNEXT" ]; then
+            ACCESSTOKEN=$x
+            unset ACCESSTOKENNEXT
+          elif [ ! -z "$VERSIONNEXT" ]; then
+            VERSION=$x
+            unset VERSIONNEXT
+          elif [ ! -z "$ASSETINDEXNEXT" ]; then
+            ASSETINDEX=$x
+            unset ASSETINDEXNEXT
+          fi
+        done
+
         echo "MC_UUID=$UUID" > $RCFILE
-        echo "MC_ACCESS_TOKEN=$ACCESS_TOKEN" >> $RCFILE
+        echo "MC_ACCESSTOKEN=$ACCESSTOKEN" >> $RCFILE
+        echo "MC_VERSION=$VERSION" >> $RCFILE
+        echo "MC_ASSETINDEX=$ASSETINDEX" >> $RCFILE
         cat $RCFILE
     elif [ "$1" = "--install" ]; then
         if [ -z "$HOME_DIRS" ]; then
@@ -71,10 +94,10 @@ minecraft() {
             -cp $_CP \
             net.minecraft.client.main.Main \
                 --username $MC_USER \
-                --version 1.12.1 \
+                --version $MC_VERSION \
                 --gameDir $HOME/.minecraft \
-                --assetsDir $HOME/.minecraft/assets \
-                --assetIndex 1.12 \
+                --assetsDir $HOME/.minecraft/_assets \
+                --assetIndex $MC_ASSETINDEX \
                 --uuid $MC_UUID \
                 --accessToken $MC_ACCESS_TOKEN \
                 --userType mojang \
