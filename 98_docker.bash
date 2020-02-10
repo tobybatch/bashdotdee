@@ -1,6 +1,7 @@
 #######################
 # Docker
 if [ ! -z "$(which docker)" ]; then
+    export DOCKER_BUILDKIT=1
 
     function dcleap {
         docker rm $(docker ps --filter=status=exited --filter=status=created -q)
