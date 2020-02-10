@@ -23,15 +23,7 @@ if [ ! -z "$(which docker)" ]; then
         fi
     }
 
-    if [ ! -z "$(which ccze)" ]; then
-        # docker ps -a | awk '{print $2 $4 $5 $6 $7}' | ccze -A
-        docker ps -a | ccze -A
-    else
-        docker ps -a
-    fi
-
     function docker-clear-log {
-
         if [[ -z $1 ]]; then
             read -p "No container specified clear all, Are you sure? " -n 1 -r
             echo

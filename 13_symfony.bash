@@ -1,0 +1,2 @@
+export PATH="$HOME/.symfony/bin:$PATH"
+

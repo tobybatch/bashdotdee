@@ -18,6 +18,7 @@ minecraft() {
         cp -r $SRC $DST
 
         cp -r $HOME/.minecraft/assets $HOME/.minecraft/_assets
+        cp -r $HOME/.minecraft/libraries $HOME/.minecraft/_libraries
 
         # Now get the tokens
         FULL_PS_LINE=$(ps -ef |grep "userType mojang\|userType legacy"|grep "gameDir")
@@ -78,7 +79,8 @@ minecraft() {
         source $RCFILE
 
         _CP="."
-        for x in $(find $HOME/.minecraft/libraries -name "*.jar")
+        _CP=$_CP:/home/tobias/.minecraft/libraries/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar
+        for x in $(find $HOME/.minecraft/_libraries -name "*.jar")
         do
             _CP=$_CP:$x
         done
@@ -90,17 +92,20 @@ minecraft() {
             -XX:+CMSIncrementalMode \
             -XX:-UseAdaptiveSizePolicy \
             -Xmn128M \
-            -Djava.library.path=$HOME/.minecraft/versions/$VERSION/$VERSION-natives \
+            -Djava.library.path=/home/tobias/.minecraft/versions/$VERSION/$VERSION-natives \
+            -Dminecraft.launcher.brand=java-minecraft-launcher \
+            -Dminecraft.launcher.version=1.6.89-j \
+            -Dminecraft.client.jar=/home/tobias/.minecraft/versions/$VERSION/$VERSION.jar \
             -cp $_CP \
-            net.minecraft.client.main.Main \
-                --username $MC_USER \
-                --version $MC_VERSION \
-                --gameDir $HOME/.minecraft \
-                --assetsDir $HOME/.minecraft/_assets \
-                --assetIndex $MC_ASSETINDEX \
-                --uuid $MC_UUID \
-                --accessToken $MC_ACCESS_TOKEN \
-                --userType mojang \
-                --versionType release
+                net.minecraft.client.main.Main \
+            --username $MC_USER \
+            --version $MC_VERSION \
+            --gameDir $HOME/.minecraft \
+            --assetsDir $HOME/.minecraft/_assets \
+            --assetIndex $MC_ASSETINDEX \
+            --uuid $MC_UUID \
+            --accessToken $MC_ACCESS_TOKEN \
+            --userProperties {} \
+            --userType mojang
     fi
 }
