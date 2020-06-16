@@ -5,11 +5,14 @@ Adds function to my bash shell.
     git clone git@github.com:tobybatch/bashdotdee.git $HOME/.bash.d
     
     cat <<EOF>>.bashrc
-    for x in ~/.bash.d/*.bash
+    PATH=$PATH:$HOME/.bash.d
+    for x in ~/.bash.d/enabled/*.bash
     do
         . "$x"
     done
     EOF
 
-New shells should now have added jiuce.
+Now use ```bash.d.sh -h``` to manage extensions.
+
+New shells should now have added juice.
 
