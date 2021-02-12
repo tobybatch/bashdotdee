@@ -1,4 +1,4 @@
-export PATH=$HOME/workspace/Shell-tools:$PATH
+export PATH=$HOME/workspace/Dev/Shell-tools:$PATH
 
 function fixperms {
     # HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
