@@ -7,6 +7,13 @@
 # hint: try authenticating with `gh auth login`
 
 function ghbc {
+  ENV=$(pwd)/.ghbc_env
+  echo $ENV
+  if [ -e $ENV ]; then
+    source $ENV
+    REPO=" -R $GHBC_REPO "
+  fi
+
   if [ ! -z "$1" ]; then
     ISSUEID=$1
   else
@@ -14,7 +21,7 @@ function ghbc {
     return 1
   fi
 
-  TITLE=$(gh issue view ${ISSUEID} | head -n 1 | sed "s/title: //g")
+  TITLE=$(gh issue ${REPO} view ${ISSUEID} | head -n 1 | sed "s/title: //g")
   TITLE=$(echo ${TITLE} | sed "s/title: //g")
   CLEANED=$(echo $TITLE  | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
   BRANCH=$ISSUEID/$CLEANED
