@@ -1,4 +1,13 @@
-export PATH=$HOME/workspace/Dev/Shell-tools:$PATH
+export PATH=$HOME/usr/lib/Shell-tools:$PATH
+
+function countdown() {
+    start="$(( $(date '+%s') + $1))"
+    while [ $start -ge $(date +%s) ]; do
+        time="$(( $start - $(date +%s) ))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
 
 function fixperms {
     # HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
