@@ -2,7 +2,7 @@
 
 Adds function to my bash shell.
 
-    git clone git@github.com:tobybatch/bashdotdee.git $HOME/.bash.d
+    git clone https://github.com/tobybatch/bashdotdee.git $HOME/.bash.d
     
     cat <<EOF>>.bashrc
     PATH=\$PATH:\$HOME/.bash.d
