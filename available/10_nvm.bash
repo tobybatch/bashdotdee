@@ -1,5 +1,5 @@
 if [ -z "$NVM_V" ]; then
-  export NVM_V=14.15.3
+  export NVM_V=18.14.1
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -9,5 +9,7 @@ export NVM_DIR="$HOME/.nvm"
 if [ ! -d "${HOME}/.nvm/versions/node/v${NVM_V}" ]; then
   nvm install ${NVM_V}
 fi
+
+export PATH=$PATH:/home/tobias/.nvm/versions/node/v${NVM_V}/bin/workbox
 
 nvm use $NVM_V
