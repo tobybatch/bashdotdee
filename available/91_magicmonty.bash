@@ -4,12 +4,13 @@
 
 GIT_PROMPT_THEME=Single_line_Ubuntu
 
-if [ -f "$HOME/.git-prompt-colors.sh" ]; then
-    GIT_PROMPT_THEME=Custom
-    source $HOME/.git-prompt-colors.sh
-fi
-
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
+
+if [ -f "$HOME/.git-prompt-colors.sh" ]; then
+    GIT_PROMPT_THEME=Custom
+    source $HOME/.git-prompt-colors.sh 2>&1 > /dev/null
+fi
+
