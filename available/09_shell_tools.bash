@@ -1,3 +1,13 @@
+function version_bump() {
+    if [ -d .git ] && [ -e version.txt ]; then
+        git commit -am "chore: bump verstion to $(cat version.txt)"
+        return 0
+    else
+        echo No a git repo or no version.txt
+        return 1
+    fi
+}
+
 function countdown() {
   start="$(($(date '+%s') + $1))"
   while [ $start -ge "$(date +%s)" ]; do
@@ -162,4 +172,7 @@ function vbump {
     echo "Written new version ($VERSION) to $VPATH"
   fi
 
+  if [ -e $(dirname $VPATH)/.git ]; then
+      git -C $(dirname $VPATH) commit -m "chore: bump version to $VERSION" $(dirname $VPATH)/version.txt
+  fi
 }
