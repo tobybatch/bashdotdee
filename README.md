@@ -5,7 +5,7 @@ Adds function to my bash shell.
     git clone https://github.com/tobybatch/bashdotdee.git $HOME/.bash.d
     
     cat <<EOF>>.bashrc
-    PATH=\$PATH:\$HOME/.bash.d
+    PATH=\$PATH:\$HOME/.bash.d/bin
     for x in ~/.bash.d/enabled/*.bash
     do
         . "\$x"
