@@ -1,2 +1,2 @@
-export PATH="$HOME/.symfony/bin:$PATH"
+export PATH="$HOME/.symfony5/bin:$PATH"
 

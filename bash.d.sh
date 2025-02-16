@@ -58,7 +58,7 @@ while getopts "e:d:lh" options; do
         e) enable_config "$@"; exit;;
         d) disable_config "$@"; exit;;
         l) list_configs; exit;;
-        h) ;;
+        h) usage; exit;;
         *) usage; exit;;
     esac
 done
