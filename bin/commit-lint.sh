@@ -27,6 +27,14 @@ validate_commit_message() {
     fi
 }
 
+if [ "$1" == "install" ]; then
+  if [ -d "./.git/hooks" ]; then
+
+    exit 0
+  fi
+  echo "❌ Not a git repo, can't install"
+fi
+
 # Main script
 commit_msg_file="$1"
 if [[ -z "$commit_msg_file" ]]; then
