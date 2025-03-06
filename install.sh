@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGET=/tmp
+TARGET=$HOME
 
 if [ ! -d "$TARGET/.bash.d" ]; then
   git clone https://github.com/tobybatch/bashdotdee.git $TARGET/.bash.d
