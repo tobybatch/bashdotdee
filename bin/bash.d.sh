@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASHDDIR=$(dirname "$0")
+BASHDDIR=$(dirname "$0")/..
 
 # shellcheck disable=SC2086
 USAGE="$(basename $0) [-e <config>|-d config|-l]"
