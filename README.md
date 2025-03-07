@@ -26,7 +26,7 @@ New shells should now have added juice.
 
 After installing open an new shell.
 
-### Shou usage
+### Show usage
 
     bash.d.sh -h
 
