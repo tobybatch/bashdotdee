@@ -27,21 +27,33 @@ validate_commit_message() {
     fi
 }
 
+# Installation mode
 if [ "$1" == "install" ]; then
-  if [ -d "./.git/hooks" ]; then
-
-    exit 0
-  fi
-  echo "❌ Not a git repo, can't install"
+    if [ -d "./.git" ]; then
+        cp "$0" ./.git/hooks/pre-commit
+        chmod +x ./.git/hooks/pre-commit
+        echo "✅ Pre-commit hook installed successfully"
+        exit 0
+    else
+        echo "❌ Not a git repository, can't install hook"
+        exit 1
+    fi
 fi
 
-# Main script
-commit_msg_file="$1"
-if [[ -z "$commit_msg_file" ]]; then
-    echo "Usage: $0 <commit-message-file>"
-    exit 1
+# Main script - handle both direct invocation and hook execution
+if [ -n "$GIT_PARAMS" ]; then
+    # Git < 1.8.2 passes commit message via GIT_PARAMS
+    validate_commit_message "$GIT_PARAMS"
+elif [ -n "$1" ]; then
+    # Git >= 1.8.2 passes commit message as argument
+    validate_commit_message "$1"
+else
+    # Fallback: try to get the commit message file from git
+    commit_msg_file=$(git rev-parse --git-path COMMIT_EDITMSG)
+    if [ -f "$commit_msg_file" ]; then
+        validate_commit_message "$commit_msg_file"
+    else
+        echo "Error: Could not determine commit message file location"
+        exit 1
+    fi
 fi
-
-validate_commit_message "$commit_msg_file"
-echo "Commit message is valid!"
-exit 0
