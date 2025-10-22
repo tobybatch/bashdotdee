@@ -17,20 +17,4 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   alias la='ls -A'
   alias ll='ls -alF'
   alias ls='ls --color'
-
-  if [ ! -e $HOME/Library/KeyBindings ]; then
-    mkdir -p $HOME/Library/KeyBindings
-    echo '{
-  /* Remap Home / End keys to be correct */
-  "\UF729" = "moveToBeginningOfLine:"; /* Home */
-  "\UF72B" = "moveToEndOfLine:"; /* End */
-  "$\UF729" = "moveToBeginningOfLineAndModifySelection:"; /* Shift + Home */
-  "$\UF72B" = "moveToEndOfLineAndModifySelection:"; /* Shift + End */
-  "^\UF729" = "moveToBeginningOfDocument:"; /* Ctrl + Home */
-  "^\UF72B" = "moveToEndOfDocument:"; /* Ctrl + End */
-  "$^\UF729" = "moveToBeginningOfDocumentAndModifySelection:"; /* Shift + Ctrl + Home */
-  "$^\UF72B" = "moveToEndOfDocumentAndModifySelection:"; /* Shift + Ctrl + End */
-  }' > $HOME/Library/KeyBindings/DefaultKeyBinding.dict
-  fi
-
 fi

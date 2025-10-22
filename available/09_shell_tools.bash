@@ -176,3 +176,13 @@ function vbump {
       git -C $(dirname $VPATH) commit -m "chore: bump version to $VERSION" $(dirname $VPATH)/version.txt
   fi
 }
+
+urldecode() {
+    if [ $# -eq 0 ]; then
+        # Read from stdin if no arguments provided
+        python -c "import sys, urllib.parse; print(urllib.parse.unquote(sys.stdin.read().strip()))"
+    else
+        # Decode the provided argument
+        python -c "import sys, urllib.parse; print(urllib.parse.unquote('$1'))"
+    fi
+}
