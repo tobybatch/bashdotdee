@@ -1,6 +1,6 @@
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # echo source $HOME/.bashrc >> .bash_profile
-# for x in git bash-git-prompt jq nmap npm bat completion; do brew install $x; done
+# for x in git bash-git-prompt jq nmap npm bat completion xsel; do brew install $x; done
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   # Enable bash completion if present

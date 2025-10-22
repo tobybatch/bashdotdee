@@ -69,9 +69,9 @@ function randpass {
 
   if [ -z $xkcd ]; then
     if [ -z $safe ]; then
-      pass=$(</dev/urandom tr -dc 'A-Za-z0-9!@#$%&/()=' | head -c24)
+      pass=$(LC_ALL=C </dev/urandom tr -dc 'A-Za-z0-9!@#$%&/()=' | head -c24)
     else
-      pass=$(</dev/urandom tr -dc 'A-Za-z0-9' | head -c24)
+      pass=$(LC_ALL=C </dev/urandom tr -dc 'A-Za-z0-9' | head -c24)
     fi
   else
     pass=$( \
@@ -91,10 +91,16 @@ function randpass {
   done
   echo -e "$COL_RESET"
 
-  echo "$pass" | tr -d '\n' | xsel -ib
-
-  if [ "$?" ]; then
+  if command -v pbcopy >/dev/null 2>&1; then
+    # macOS
+    echo -n "$pass" | pbcopy
     echo "The password has been pushed to your clipboard, you can paste it where you want it"
+  elif command -v xsel >/dev/null 2>&1; then
+    # Linux with xsel
+    echo -n "$pass" | xsel -ib
+    echo "The password has been pushed to your clipboard, you can paste it where you want it"
+  else
+    echo "Neither pbcopy nor xsel found. Password not copied to clipboard."
   fi
 }
 
