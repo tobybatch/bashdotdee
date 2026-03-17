@@ -1,3 +1,28 @@
+function awsctl() {
+      case "${1,,}" in
+        e|enable)
+            if [ -d "$HOME/.aws.disabled" ]; then
+                set -x
+                mv $HOME/.aws.disabled $HOME/.aws
+                set +x
+            fi
+            ;;
+        d|disable)
+            if [ -d "$HOME/.aws" ]; then
+                set -x
+                mv $HOME/.aws $HOME/.aws.disabled
+                set +x
+            fi
+            ;;
+        *)
+            echo "Usage: awsctl [e|enable|d|disable]"
+            echo "  e or enable  - Enable aws config and credentials"
+            echo "  d or disable - Disable aws config and credentials"
+            return 1
+            ;;
+    esac
+}
+
 function version_bump() {
     if [ -d .git ] && [ -e version.txt ]; then
         git commit -am "chore: bump verstion to $(cat version.txt)"
