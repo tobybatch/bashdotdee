@@ -7,9 +7,9 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   [ -f /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
 
   export PATH=$PATH:/opt/homebrew/bin
+  export BASH_SILENCE_DEPRECATION_WARNING=1
 
   # Some standard aliases
-  alias cat='bat'
   alias egrep='egrep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias grep='grep --color=auto'
