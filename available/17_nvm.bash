@@ -1,5 +1,5 @@
 if [ -z "$NVM_V" ]; then
-  export NVM_V=18.14.1
+  export NVM_V=25
 fi
 
 export NVM_DIR="$HOME/.nvm"
