@@ -12,7 +12,7 @@ alias gd="govuk-docker -f $GOVUK_DOCKER_DIR/docker-compose.local.yml"
 
 export GOVUK_DOCKER_UPDATE_BRANCH=always
 
-# export DATABASE_URL=postgresql://postgres@localhost:5543/content-block-manager_development
+export DATABASE_URL=postgresql://postgres@localhost:5543/content-block-manager_development
 export DISABLE_BATCAT=1
 export GDS_SSO_STRATEGY=mock
 export GOVUK_APP_DOMAIN=dev.gov.uk
